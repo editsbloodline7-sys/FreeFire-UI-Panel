@@ -1,16 +1,23 @@
-using System;
-using System.Windows.Forms;
+var builder = WebApplication.CreateBuilder(args);
 
-namespace FreeFirePanel
+// Add services
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure middleware
+if (!app.Environment.IsDevelopment())
 {
-    static class Program
-    {
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-        }
-    }
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
