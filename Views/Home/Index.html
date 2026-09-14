@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE FIRE - ELITE PANEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #141420 0%, #1a1a30 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 76, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff4c00 0%, #ff6b1a 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ff3a00;
+            box-shadow: 0 5px 20px rgba(255, 76, 0, 0.4);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .feature-panel {
+            background: linear-gradient(135deg, #1f1f35 0%, #2a2a45 100%);
+            border: 2px solid rgba(255, 76, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-panel:hover {
+            background: linear-gradient(135deg, #2a2a40 0%, #35354f 100%);
+            border-color: rgba(255, 76, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 76, 0, 0.2);
+        }
+
+        .feature-info h3 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .feature-status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .feature-status.off {
+            color: #ff4444;
+            background: rgba(255, 68, 68, 0.2);
+        }
+
+        .feature-status.on {
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            background: #404060;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #505070;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            border-color: #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .toggle-slider {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            left: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            left: 34px;
+            background: white;
+            color: #00ff00;
+        }
+
+        .info-panel {
+            background: linear-gradient(135deg, #1f1f35 0%, #2a2a45 100%);
+            border: 2px solid rgba(255, 76, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .info-header h4 {
+            color: #ff4c00;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            color: #00ff00;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 5px 12px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .info-text {
+            color: #cccccc;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .active-features {
+            background: rgba(255, 76, 0, 0.1);
+            border: 1px solid rgba(255, 76, 0, 0.3);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .active-features-label {
+            color: #ff4c00;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .active-features-value {
+            color: #00ff00;
+            font-size: 13px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 11px;
+            border-top: 1px solid rgba(255, 76, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .feature-panel {
+                padding: 15px;
+            }
+
+            .feature-info h3 {
+                font-size: 14px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+            }
+        }
+
+        .toggle-switch.active {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ FREE FIRE ELITE ⚡</h1>
+            <p>Professional Gaming Panel</p>
+        </div>
+
+        <div class="content">
+            <!-- ES Switch -->
+            <div class="feature-panel" onclick="toggleFeature('es')">
+                <div class="feature-info">
+                    <h3>ES (Enemy Sense)</h3>
+                    <span class="feature-status off" id="es-status">Status: OFF</span>
+                </div>
+                <div class="toggle-switch" id="es-toggle">
+                    <div class="toggle-slider">OFF</div>
+                </div>
+            </div>
+
+            <!-- AIM Switch -->
+            <div class="feature-panel" onclick="toggleFeature('aim')">
+                <div class="feature-info">
+                    <h3>AIM (Auto Aim)</h3>
+                    <span class="feature-status off" id="aim-status">Status: OFF</span>
+                </div>
+                <div class="toggle-switch" id="aim-toggle">
+                    <div class="toggle-slider">OFF</div>
+                </div>
+            </div>
+
+            <!-- FL Switch -->
+            <div class="feature-panel" onclick="toggleFeature('fl')">
+                <div class="feature-info">
+                    <h3>FL (FlashLight)</h3>
+                    <span class="feature-status off" id="fl-status">Status: OFF</span>
+                </div>
+                <div class="toggle-switch" id="fl-toggle">
+                    <div class="toggle-slider">OFF</div>
+                </div>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="info-panel">
+                <div class="info-header">
+                    <h4>STATUS</h4>
+                    <span class="status-badge">Ready</span>
+                </div>
+                <p class="info-text">
+                    🎮 All switches are ready to use<br>
+                    ⚡ Enable features as needed<br>
+                    ✅ System Operating Normally
+                </p>
+                <div class="active-features">
+                    <span class="active-features-label">Active Features:</span>
+                    <div class="active-features-value" id="active-count">None</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>⚡ Professional Gaming Panel | Version 1.0 ⚡</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Feature states
+        let features = {
+            es: false,
+            aim: false,
+            fl: false
+        };
+
+        // Toggle function
+        function toggleFeature(feature) {
+            features[feature] = !features[feature];
+            updateUI(feature);
+            updateActiveCount();
+        }
+
+        // Update UI for specific feature
+        function updateUI(feature) {
+            const toggle = document.getElementById(feature + '-toggle');
+            const status = document.getElementById(feature + '-status');
+            const slider = toggle.querySelector('.toggle-slider');
+            
+            if (features[feature]) {
+                toggle.classList.add('active');
+                status.textContent = `Status: ON`;
+                status.classList.remove('off');
+                status.classList.add('on');
+                slider.textContent = 'ON';
+            } else {
+                toggle.classList.remove('active');
+                status.textContent = `Status: OFF`;
+                status.classList.remove('on');
+                status.classList.add('off');
+                slider.textContent = 'OFF';
+            }
+        }
+
+        // Update active features count
+        function updateActiveCount() {
+            const active = Object.values(features).filter(v => v).length;
+            const activeDiv = document.getElementById('active-count');
+            
+            if (active === 0) {
+                activeDiv.textContent = 'None';
+            } else {
+                let activeFeatures = [];
+                if (features.es) activeFeatures.push('ES');
+                if (features.aim) activeFeatures.push('AIM');
+                if (features.fl) activeFeatures.push('FL');
+                activeDiv.textContent = activeFeatures.join(' • ');
+            }
+        }
+
+        // Make panels clickable on touch devices
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActiveCount();
+        });
+    </script>
+</body>
+</html>
