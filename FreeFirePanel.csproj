@@ -1,18 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <RootNamespace>FreeFirePanel</RootNamespace>
-    <AssemblyName>FreeFirePanel</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <StartupObject>FreeFirePanel.Program</StartupObject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>FreeFirePanelWeb</RootNamespace>
+    <AssemblyName>FreeFirePanelWeb</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Drawing" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
 </Project>
